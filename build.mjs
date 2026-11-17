@@ -49,12 +49,12 @@ if (process.argv.includes('--offline')) {
 
   let offlinePage = page.replace(/ (?:srcset|sizes)="[^"]*"/g, '');
   const largestPhotos = {
-    serrana: 2560,
+    serrana: 3840,
     arequita: 3840,
-    charla: 2880,
-    piso: 2880,
-    senas: 2880,
-    penitente: 1920,
+    charla: 3840,
+    piso: 3840,
+    senas: 3840,
+    penitente: 3840,
   };
   for (const [name, width] of Object.entries(largestPhotos)) {
     const embedded = await dataUri(`${name}-${width}.webp`, 'image/webp');
