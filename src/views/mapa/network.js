@@ -169,6 +169,14 @@ function make3D(canvas) {
       });
       renderer.render(scene, camera);
     },
+    dispose() {
+      clear(ripples);
+      clear(routes);
+      clear(orbs);
+      texture.dispose();
+      renderer.dispose();
+      if (!context.isContextLost()) renderer.forceContextLoss();
+    },
   };
 }
 
@@ -225,11 +233,12 @@ function make2D(canvas) {
 export function connectNetwork(network, motionEnabled) {
   const center = network.querySelector('.network-center');
   const nodes = [...network.querySelectorAll('.map-node')];
-  const leaves = nodes.map((node) => document.getElementById(node.getAttribute('aria-controls')));
+  const leaves = nodes.map((node) => network.querySelector(`#${CSS.escape(node.getAttribute('aria-controls'))}`));
+  const listeners = new AbortController();
   let canvas = network.querySelector('canvas');
   let drawing;
   let visible = false;
-  let selected = -1;
+  let selected = nodes.findIndex((node) => node.getAttribute('aria-expanded') === 'true');
   let frame = 0;
 
   function refresh() {
@@ -250,10 +259,17 @@ export function connectNetwork(network, motionEnabled) {
     refresh();
   }
 
-  function fallback() {
+  function resetCanvas() {
     const replacement = canvas.cloneNode();
+    replacement.removeAttribute('width');
+    replacement.removeAttribute('height');
     canvas.replaceWith(replacement);
     canvas = replacement;
+  }
+
+  function fallback() {
+    drawing?.dispose?.();
+    resetCanvas();
     drawing = make2D(canvas);
     network.dataset.renderer = drawing ? 'canvas' : 'none';
     size();
@@ -269,7 +285,7 @@ export function connectNetwork(network, motionEnabled) {
     canvas.addEventListener('webglcontextlost', (event) => {
       event.preventDefault();
       fallback();
-    }, { once: true });
+    }, { once: true, signal: listeners.signal });
   }
 
   function select(index) {
@@ -284,17 +300,36 @@ export function connectNetwork(network, motionEnabled) {
   }
 
   network.classList.add('network-ready');
-  leaves.forEach((leaf) => { leaf.hidden = true; });
-  nodes.forEach((node, index) => node.addEventListener('click', () => select(index)));
-  new ResizeObserver(size).observe(network);
+  leaves.forEach((leaf, index) => { leaf.hidden = index !== selected; });
+  nodes.forEach((node, index) => node.addEventListener('click', () => select(index), { signal: listeners.signal }));
+  const observer = new ResizeObserver(size);
+  observer.observe(network);
 
   return {
     setVisible(enabled) {
+      if (visible === enabled) return;
       visible = enabled;
-      if (!visible) return;
+      if (!visible) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+        return;
+      }
       if (!network.dataset.renderer) initialize();
       size();
     },
     refresh,
+    destroy() {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      listeners.abort();
+      drawing?.dispose?.();
+      if (drawing) resetCanvas();
+      delete network.dataset.renderer;
+      network.classList.remove('network-ready');
+      for (const leaf of leaves) {
+        leaf.hidden = false;
+        leaf.classList.remove('is-opening');
+      }
+    },
   };
 }

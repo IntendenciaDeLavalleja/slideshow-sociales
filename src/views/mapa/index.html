@@ -1,0 +1,37 @@
+<section class="slide atlas" id="mapa" data-label="Mapa de trabajo" data-transition="vertical" aria-labelledby="titulo-mapa">
+  <div class="slide-content atlas-inner">
+    <div class="atlas-header">
+      <p class="overline">Mapa de trabajo</p>
+      <h2 class="display" id="titulo-mapa" tabindex="-1">¿Quiénes dan forma al Área?</h2>
+      <p class="atlas-instruction" data-controls hidden>Elegí una rama para desplegar sus aportes.</p>
+    </div>
+    <div class="network">
+      <canvas class="network-canvas" aria-hidden="true"></canvas>
+      <div class="network-center" aria-label="Comisión Pro Creación del Área de Discapacidad, Inclusión y Accesibilidad de la Intendencia de Lavalleja"><span>Comisión Pro Creación</span></div>
+      <button class="map-node branch-management" data-controls hidden type="button" data-branch="gestion" aria-expanded="false" aria-controls="aporte-gestion"><span>Gestión departamental</span></button>
+      <button class="map-node branch-community" data-controls hidden type="button" data-branch="comunidad" aria-expanded="false" aria-controls="aporte-comunidad"><span>Personas y organizaciones</span></button>
+      <button class="map-node branch-territory" data-controls hidden type="button" data-branch="territorio" aria-expanded="false" aria-controls="aporte-territorio"><span>Municipios y localidades</span></button>
+      <button class="map-node branch-national" data-controls hidden type="button" data-branch="nacional" aria-expanded="false" aria-controls="aporte-nacional"><span>Organismos nacionales</span></button>
+      <div class="branch-leaves branch-management" id="aporte-gestion">
+        <h3 class="fallback-heading">Gestión departamental</h3>
+        <div class="leaf"><strong>Gabinete Social</strong><p>Deporte, Cultura, Descentralización, Juventud, Servicios Sociales y Familia, Género, Cuidados y Generaciones.</p></div>
+        <div class="leaf"><strong>Criterios comunes</strong><p>Planificar y evaluar acciones con accesibilidad desde el inicio.</p></div>
+      </div>
+      <div class="branch-leaves branch-community" id="aporte-comunidad">
+        <h3 class="fallback-heading">Personas y organizaciones</h3>
+        <div class="leaf"><strong>Participación directa</strong><p>Identificar barreras y proponer soluciones con personas con discapacidad.</p></div>
+        <div class="leaf"><strong>Redes comunitarias</strong><p>Recoger aportes de organizaciones, familias, centros educativos y clubes.</p></div>
+      </div>
+      <div class="branch-leaves branch-territory" id="aporte-territorio">
+        <h3 class="fallback-heading">Municipios y localidades</h3>
+        <div class="leaf"><strong>Escucha en el territorio</strong><p>Consultar a comunidades urbanas y rurales.</p></div>
+        <div class="leaf"><strong>Prioridades locales</strong><p>Considerar distancias, movilidad, conectividad y acceso a servicios.</p></div>
+      </div>
+      <div class="branch-leaves branch-national" id="aporte-nacional">
+        <h3 class="fallback-heading">Organismos nacionales</h3>
+        <div class="leaf"><strong>Articulación con el MIDES</strong><p>Vincular programas nacionales con las necesidades de Lavalleja.</p></div>
+        <div class="leaf"><strong>Seguimiento</strong><p>Acordar referentes y canales de trabajo.</p></div>
+      </div>
+    </div>
+  </div>
+</section>

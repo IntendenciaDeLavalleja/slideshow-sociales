@@ -1,0 +1,4 @@
+.territory { --tone: #e3f7a0; }
+.territory .scene-image { left: 34%; }
+.territory .scene-image img { object-position: 50% 50%; filter: saturate(.87) contrast(1.08); }
+.territory .scene-shade { background: linear-gradient(90deg, #070a11 32%, #080b12d9 43%, #0b0d1345 72%, #0b0d1314), linear-gradient(0deg, #080b11a0, transparent 40%); }

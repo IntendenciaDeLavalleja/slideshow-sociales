@@ -1,0 +1,19 @@
+.sources {
+  max-width: min(42rem, calc(100vw - 2rem));
+  max-height: min(85dvh, 50rem);
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: .65rem;
+  border: 1px solid #a8b6d88c;
+  background: #161d2b;
+  color: var(--white);
+  overscroll-behavior: contain;
+  line-height: 1.5;
+}
+
+.sources::backdrop { background: #03060ddb; }
+.sources-heading { display: flex; align-items: center; justify-content: space-between; gap: .85rem; }
+.sources-heading h2 { font-size: clamp(1.35rem, 3.8vw, 2rem); line-height: 1.12; }
+.sources h3 { margin-top: 1rem; color: var(--acid); font-size: 1rem; }
+.sources ul { padding-left: 1.2rem; margin: .45rem 0 .8rem; }
+.sources li + li { margin-top: .28rem; }
+.sources p { font-size: .92rem; color: #e1e6ed; }

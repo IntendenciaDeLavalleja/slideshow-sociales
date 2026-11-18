@@ -1,0 +1,119 @@
+.atlas {
+  --tone: #aee0ff;
+  background: radial-gradient(ellipse at 28% 55%, #242647 0%, #171927 40%, #0e111c 81%);
+}
+
+.atlas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#c3d9fe2b .8px, transparent 1px);
+  background-size: 23px 23px;
+  mask-image: linear-gradient(#0000, #000 25%, #000 87%, #0000);
+  pointer-events: none;
+}
+
+.atlas-inner, .deck-ready .atlas-inner {
+  display: grid;
+  grid-template-rows: auto minmax(19.5rem, 1fr);
+  justify-content: stretch;
+  padding-top: clamp(1.6rem, 5.2vh, 3.6rem);
+  padding-bottom: calc(var(--safe-bottom) - .6rem);
+}
+
+.atlas-header { position: relative; z-index: 1; }
+.atlas-header .display {
+  margin-top: .55rem;
+  font-size: clamp(3rem, min(8.15vw, 12vh), 9rem);
+  line-height: 1.08;
+}
+
+.atlas-instruction { margin-top: .95rem; color: #d4d8f3; font-size: clamp(.85rem, 1.5vw, 1.1rem); }
+.network { position: relative; isolation: isolate; margin: .35rem calc(-1 * var(--gutter) * .3) 0; }
+.network-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.network-center, .map-node, .branch-leaves { position: relative; z-index: 1; }
+.network-ready .network-center, .network-ready .map-node, .network-ready .branch-leaves { position: absolute; }
+.network-center {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  width: clamp(8.5rem, 16vw, 14.5rem);
+  aspect-ratio: 1.45;
+  border: 1px solid #e7edff;
+  border-radius: 1.2rem;
+  background: linear-gradient(150deg, #f1f3ff, #cbd7f6);
+  color: #181d33;
+  box-shadow: 0 0 2.6rem #9fb8ff63;
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 3.3vw, 3.15rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.06;
+}
+
+.network-center span { max-width: 9ch; }
+.network-ready .network-center { left: 16%; top: 50%; transform: translate(-50%, -50%); }
+.branch-management { --branch-y: 17%; --branch-color: #e6f797; }
+.branch-community { --branch-y: 39%; --branch-color: #f8bde3; }
+.branch-territory { --branch-y: 61%; --branch-color: #92e3df; }
+.branch-national { --branch-y: 83%; --branch-color: #c1c6ff; }
+.map-node {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  left: 51%;
+  top: var(--branch-y);
+  transform: translate(-50%, -50%);
+  width: clamp(9.85rem, 23%, 18.9rem);
+  min-height: clamp(3rem, 8.2vh, 4.9rem);
+  padding: .6rem .92rem;
+  border: 1px solid color-mix(in srgb, var(--branch-color), transparent 48%);
+  border-radius: .66rem;
+  background: #212539;
+  color: var(--white);
+  font-size: clamp(.87rem, 1.58vw, 1.4rem);
+  font-weight: 730;
+  line-height: 1.12;
+  text-align: left;
+  box-shadow: 0 7px 27px #090a1492;
+  transition: background-color .19s ease, border-color .19s ease;
+}
+
+.map-node::before {
+  content: "";
+  flex: 0 0 auto;
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background: var(--branch-color);
+  box-shadow: 0 0 .55rem var(--branch-color);
+}
+
+.map-node:hover, .map-node[aria-expanded="true"] {
+  border-color: var(--branch-color);
+  background: color-mix(in srgb, #23263b 83%, var(--branch-color));
+}
+
+.network-ready .fallback-heading { display: none; }
+.branch-leaves { display: grid; gap: .6rem; padding-top: .4rem; }
+.network-ready .branch-leaves {
+  left: 72%;
+  top: clamp(19%, var(--branch-y), 81%);
+  transform: translateY(-50%);
+  width: 28%;
+  padding: 0;
+}
+.network-ready .branch-leaves.branch-management { top: max(29%, var(--branch-y)); }
+
+.leaf {
+  border-left: 2px solid var(--branch-color);
+  border-radius: .22rem;
+  background: #23263fee;
+  padding: clamp(.53rem, 1.4vh, .9rem) clamp(.65rem, 1.4vw, 1rem);
+}
+
+.leaf strong { color: var(--branch-color); font-size: clamp(.82rem, 1.27vw, 1.05rem); line-height: 1.16; display: block; }
+.leaf p { color: #ececf6; margin-top: .28rem; line-height: 1.28; font-size: clamp(.76rem, 1.05vw, .98rem); }
+.branch-leaves.is-opening .leaf { animation: branch-in .24s cubic-bezier(.2,.8,.2,1) both; }
+.branch-leaves.is-opening .leaf + .leaf { animation-delay: .055s; }
+@keyframes branch-in { from { opacity: 0; } to { opacity: 1; } }

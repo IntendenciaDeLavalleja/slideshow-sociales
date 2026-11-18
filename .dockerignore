@@ -1,0 +1,11 @@
+.git
+.openai
+.vscode
+node_modules
+dist
+coverage
+*.log
+*.tgz
+*.tar.gz
+*.zip
+.env*

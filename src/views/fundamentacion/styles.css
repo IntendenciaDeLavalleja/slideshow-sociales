@@ -1,0 +1,35 @@
+.rationale {
+  --tone: #e3f8a1;
+  background: radial-gradient(ellipse at 75% 35%, #344b43, #172620 58%, #0b1110);
+}
+.rationale::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .3;
+  background-image: radial-gradient(#e3f8a1 1px, transparent 1px);
+  background-size: 27px 27px;
+  mask-image: linear-gradient(90deg, transparent 15%, #000);
+}
+.rationale-copy { max-width: 74rem; }
+.rationale .display { margin-block: 1rem 1.3rem; font-size: clamp(3.6rem, min(10vw, 16vh), 10rem); }
+.rationale .display span { display: block; color: var(--acid); }
+.rationale .slide-lead { max-width: 48ch; }
+.rationale-rights {
+  max-width: 66ch;
+  margin-top: clamp(.9rem, 2.5vh, 1.6rem);
+  font-size: clamp(.95rem, min(1.45vw, 2.8vh), 1.25rem);
+  line-height: 1.4;
+  color: #ecf2e9;
+}
+.rationale-rights .rights-heading { color: var(--acid); font-weight: 800; margin-bottom: .35rem; }
+.rationale-conclusion {
+  max-width: 45ch;
+  margin-top: clamp(1.25rem, 3.5vh, 2.3rem);
+  padding-left: .9rem;
+  border-left: 3px solid var(--acid);
+  color: var(--acid);
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  line-height: 1.4;
+  font-weight: 700;
+}

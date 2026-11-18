@@ -1,0 +1,62 @@
+.tools, .deck-nav {
+  position: fixed;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  color: #f5f6ef;
+  background: #0c111af0;
+  border: 1px solid #c2cde451;
+  border-radius: .42rem;
+  box-shadow: 0 3px 11px #03060c36;
+}
+
+.tools { top: max(.92rem, env(safe-area-inset-top)); right: max(1.05rem, env(safe-area-inset-right)); gap: .15rem; padding: .1rem; }
+.deck-nav { left: 50%; bottom: max(.95rem, env(safe-area-inset-bottom)); transform: translateX(-50%); gap: .45rem; padding: .12rem .24rem; }
+.control {
+  display: inline-grid;
+  place-items: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  padding: 0;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: .24rem;
+  background: transparent;
+  color: inherit;
+  line-height: 1;
+}
+
+.control:hover { background: #dce4ea24; }
+.control[aria-disabled="true"] { opacity: .43; cursor: default; }
+.control[aria-disabled="true"]:hover { background: transparent; }
+.control > span:not(.fullscreen-icon, .motion-icon) { font-size: 1.2rem; }
+.motion-icon { width: .61rem; height: .77rem; border-inline: 2px solid; }
+.motion-toggle[aria-pressed="true"] .motion-icon { width: 0; height: 0; margin-left: 2px; border: .34rem solid transparent; border-left: .58rem solid; border-right: 0; }
+.fullscreen-icon {
+  display: inline-block;
+  width: .97rem;
+  height: .97rem;
+  background: linear-gradient(currentColor,currentColor) left top / 5px 1.5px,
+    linear-gradient(currentColor,currentColor) left top / 1.5px 5px,
+    linear-gradient(currentColor,currentColor) right top / 5px 1.5px,
+    linear-gradient(currentColor,currentColor) right top / 1.5px 5px,
+    linear-gradient(currentColor,currentColor) left bottom / 5px 1.5px,
+    linear-gradient(currentColor,currentColor) left bottom / 1.5px 5px,
+    linear-gradient(currentColor,currentColor) right bottom / 5px 1.5px,
+    linear-gradient(currentColor,currentColor) right bottom / 1.5px 5px;
+  background-repeat: no-repeat;
+}
+
+.deck-count { font-size: .74rem; font-weight: 720; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.deck-steps { display: flex; align-items: center; }
+.deck-step {
+  border: 0;
+  width: clamp(1.28rem, 2.45vw, 2.55rem);
+  min-height: 2.55rem;
+  background: transparent;
+  padding: 0 .18rem;
+}
+
+.deck-step span { display: block; height: 3px; border-radius: 2px; background: #b8c4d078; transition: background-color .18s ease; }
+.deck-step:hover span { background: #f1f5dc; }
+.deck-step[aria-current="step"] span { height: 4px; background: var(--acid); box-shadow: 0 0 7px #e0f4a569; }

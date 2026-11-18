@@ -1,0 +1,7 @@
+.community { --tone: #ffd0c6; }
+.community .scene-image { left: 34%; }
+.community .scene-image img { object-position: 66% 35%; }
+.community .scene-shade {
+  background: linear-gradient(90deg, #111019 34%, #111019e2 42%, #1110194a 69%, #11101912),
+    linear-gradient(0deg, #0b0d17a8, transparent 40%);
+}
